@@ -1,0 +1,116 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuvataluah4q0"]
+
+[ext_resource type="Script" path="res://option.gd" id="1_4m1qa"]
+[ext_resource type="Texture2D" uid="uid://dkyirb37s5v15" path="res://return.png" id="2_xhh7o"]
+
+[node name="BoxContainer" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4m1qa")
+type = 1
+value = 0.0
+default = 0
+
+[node name="Title" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.65
+text = "Option Name"
+vertical_alignment = 1
+
+[node name="ResetButton" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+icon = ExtResource("2_xhh7o")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Int" type="SpinBox" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+rounded = true
+allow_greater = true
+allow_lesser = true
+
+[node name="Float" type="SpinBox" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.001
+allow_greater = true
+allow_lesser = true
+
+[node name="Range" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Slider" type="HSlider" parent="Range"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 10.0
+step = 0.1
+
+[node name="Value" type="LineEdit" parent="Range"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "0.0"
+editable = false
+
+[node name="Color" type="ColorPickerButton" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="String" type="LineEdit" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1.98500000000058"
+
+[node name="Bool" type="CheckButton" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Option" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Enum" type="OptionButton" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "Test Value"
+popup/item_0/id = 0
+popup/item_1/text = "Notify"
+popup/item_1/id = 1
+popup/item_2/text = "Test Element"
+popup/item_2/id = 2
+
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="value_changed" from="Int" to="." method="_on_int_value_changed"]
+[connection signal="value_changed" from="Float" to="." method="_on_float_value_changed"]
+[connection signal="value_changed" from="Range/Slider" to="." method="_on_slider_value_changed"]
+[connection signal="color_changed" from="Color" to="." method="_on_color_color_changed"]
+[connection signal="text_changed" from="String" to="." method="_on_string_text_changed"]
+[connection signal="toggled" from="Bool" to="." method="_on_bool_toggled"]
+[connection signal="item_selected" from="Enum" to="." method="_on_enum_item_selected"]
