@@ -28,11 +28,6 @@ var _value: Variant:
 		_value = val
 		value_changed.emit(_value)
 		if is_inside_tree():
-			if type == OptionType.TITLE:
-				%ResetButton.hide()
-			elif _value != null and type != OptionType.TITLE:
-				%ResetButton.show()
-				%ResetButton.modulate.a = int(not is_same(_value, default))
 			_update_value()
 	
 var default: Variant
@@ -50,6 +45,15 @@ func _update_name():
 	%Title.text = _name
 
 func _update_value():
+	
+	%ResetButton.hide()
+	
+	if type == OptionType.TITLE:
+		%ResetButton.hide()
+	elif _value != null and type != OptionType.TITLE:
+		%ResetButton.show()
+		%ResetButton.modulate.a = int(not is_same(_value, default))
+		
 	match type:
 		OptionType.INT:
 			if _value != null and typeof(_value) == TYPE_INT:
